@@ -26,10 +26,10 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <!-- PLaats hier de header velden voor de tabel-->
-                    <Label Text="#"/>
-                    <Label Grid.Column="1" Text="Product"/>
-                    <Label Grid.Column="2" Text="Aantal verkocht"/>
-                    <Label Grid.Column="3" Text="Aantal voorraad"/>
+                    <Label Text="#" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Column="1" Text="Product" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Column="2" Text="Aantal verkocht" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Column="3" Text="Aantal voorraad" HorizontalTextAlignment="Start"/>
                 </Grid>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
@@ -37,8 +37,8 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.5*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/> 
+                            <ColumnDefinition Width="*"/> 
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <!-- PLaats hier de datavelden voor de tabel-->

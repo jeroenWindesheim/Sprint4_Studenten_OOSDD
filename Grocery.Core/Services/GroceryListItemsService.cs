@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Grocery.Core.Interfaces.Repositories;
+﻿using Grocery.Core.Interfaces.Repositories;
 using Grocery.Core.Interfaces.Services;
 using Grocery.Core.Models;
 
@@ -52,34 +51,44 @@ namespace Grocery.Core.Services
 
         public List<BestSellingProducts> GetBestSellingProducts(int topX = 5)
         {
-            // Make a list of the five best-selling products
-            
             // Make a list to return
             List<BestSellingProducts> bestSold = [];
             
             // Get all product
             List<Product> allProducts = _productRepository.GetAll();
-            
-            
-            // Make a list of all products. 
-            
-            
-            // Give all products an amount of sold
-            
-            
-            // Sort the list on the amount
-            
-            // Set the first five in the bestSold list
-            
+            List<GroceryListItem> groceries = _groceriesRepository.GetAll();
+            // List<GroceryListItem> groceries = _groceriesRepository.GetAll();
             
             int count = 1;
             foreach (Product item in allProducts)
             {
-                BestSellingProducts newProduct = new BestSellingProducts(item.Id, item.Name, item.Stock, 30, count);
+                int amountOfProductsSold = 0;
+                foreach (GroceryListItem groceryListItem in groceries)
+                {
+                    
+                    if (item.Id == groceryListItem.ProductId)
+                    {
+                        // var test = _groceriesRepository.GetAllOnGroceryListId(groceryListItem.ProductId);
+                        amountOfProductsSold += groceryListItem.Amount;
+                    }
+                }
+                BestSellingProducts newProduct = new BestSellingProducts(item.Id, item.Name, item.Stock, amountOfProductsSold, 0);
                 count++;
-                bestSold .Add(newProduct);
-                Trace.WriteLine($"BestSellingProducts: {count}");
+                bestSold.Add(newProduct);
             }
+            // Sort by amount sold (descending), then take topX
+            bestSold = bestSold
+                .OrderByDescending<BestSellingProducts, object>(p => p.NrOfSells) // adjust if property name differs
+                .Take(topX)
+                .ToList();
+
+            // Re-assign ranks after ordering
+            int rank = 1;
+            foreach (var product in bestSold)
+            {
+                product.Ranking = rank++;
+            }
+            
 
             return bestSold;
         }
