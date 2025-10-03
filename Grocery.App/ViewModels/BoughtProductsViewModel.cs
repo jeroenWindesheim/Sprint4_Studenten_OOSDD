@@ -31,8 +31,6 @@ namespace Grocery.App.ViewModels
             {
                 BoughtProductsList.Add(boughtProduct);
             }
-            
-            // Zorg dat de lijst BoughtProductsList met de gegevens die passen bij het geselecteerde product. 
         }
 
         [RelayCommand]

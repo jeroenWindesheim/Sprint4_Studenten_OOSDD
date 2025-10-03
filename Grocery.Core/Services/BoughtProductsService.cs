@@ -53,26 +53,5 @@ namespace Grocery.Core.Services
             
             return boughtProducts;
         }
-        
-        
-        
-        // public List<BoughtProducts> Get2(int productId)
-        // {
-        //     Product? product = _productRepository.Get(productId);
-        //     if (product == null) return [_boughtProductsList];
-        //     
-        //     List<GroceryListItem> groceryListItemRepository = _groceryListItemsRepository.GetAll().Where(glir => glir.ProductId == productId).ToList();
-        //     foreach (GroceryListItem glirItem in groceryListItemRepository)
-        //     {
-        //         // Get GroceryList
-        //         GroceryList groceryList = _groceryListRepository.Get(glirItem.GroceryListId);
-        //         if (groceryList == null) break;
-        //         // Get client
-        //         Client client = _clientRepository.Get(groceryList.ClientId);
-        //         if (client == null) break;
-        //         _boughtProductsList.Add(new BoughtProducts(client, groceryList, product));
-        //     }
-        //     return _boughtProductsList;
-        // }
     }
 }
